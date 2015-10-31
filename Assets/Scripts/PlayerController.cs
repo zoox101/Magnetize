@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour {
     {
         if (Input.GetButtonDown("Jump"))
         {
-            playerMagnetism *= -1;
+			this.flip();
             Debug.Log("Flipped Magnetism");
         }
     }
@@ -109,5 +109,10 @@ public class PlayerController : MonoBehaviour {
         else
             return -1f;
     }
+
+	public void flip()
+	{
+		this.playerMagnetism *= -1;
+	}
     
 }
