@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour {
     public Text countText;
     public Text winText;
     public GameObject player;
+    public GameObject camera;
     public Material ballMaterial;
 
     [SerializeField] private RaycastHit whatIsGround;
@@ -19,6 +20,7 @@ public class PlayerController : MonoBehaviour {
     private bool isGrounded;
     private Transform groundCheck;
     private float groundedRadius = 5f;
+    private Vector3 movement;
 
     void Start ()
     {
@@ -45,7 +47,11 @@ public class PlayerController : MonoBehaviour {
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
-        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+
+        movement = camera.transform.right * moveHorizontal;
+        movement += camera.transform.forward * moveVertical;
+        movement.Normalize();
+        //movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
         if (isGrounded)
         {
             Debug.Log("Grounded");
