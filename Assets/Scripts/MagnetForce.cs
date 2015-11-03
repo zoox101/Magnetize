@@ -28,12 +28,21 @@ public class MagnetForce : MonoBehaviour {
             playerDirection = player.transform.position - magnet.GetComponent<Collider>().ClosestPointOnBounds(player.transform.position);
             playerDirection = Vector3.Normalize(playerDirection);
 
+            magnetForce = magnetStrength * playerDirection / (Mathf.Pow(distance, magnetScaling));
+            if (magnetStrength < 0)
+                player.GetComponent<TotalForce>().TallyForce(magnetForce * 1);
+            else
+                player.GetComponent<TotalForce>().TallyForce(magnetForce*-1);
+
             playerMagnetism = player.GetComponent<PlayerController>().GetPlayerMagnetism();
-            magnetForce = playerMagnetism * magnetStrength * playerDirection / (Mathf.Pow(distance, magnetScaling));
-            if (magnetForce.magnitude > 500)
+            magnetForce *= playerMagnetism;
+
+            if (magnetForce.magnitude > maxForce)
                 magnetForce = magnetForce.normalized * maxForce;
+
             playerBody.AddForce(magnetForce);
 
         }
     }
+    
 }

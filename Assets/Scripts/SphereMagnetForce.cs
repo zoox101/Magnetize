@@ -28,9 +28,19 @@ public class SphereMagnetForce : MonoBehaviour {
             playerDirection = player.transform.position - magnet.transform.position;
             playerDirection = Vector3.Normalize(playerDirection);
 
-            playerMagnetism = player.GetComponent<PlayerController>().GetPlayerMagnetism();
-            magnetForce = playerMagnetism * magnetStrength * playerDirection / (Mathf.Pow(distance, magnetScaling));
+            magnetForce = magnetStrength * playerDirection / (Mathf.Pow(distance, magnetScaling));
+            if (magnetStrength < 0)
+                player.GetComponent<TotalForce>().TallyForce(magnetForce * 1);
+            else
+                player.GetComponent<TotalForce>().TallyForce(magnetForce * -1);
 
+            playerMagnetism = player.GetComponent<PlayerController>().GetPlayerMagnetism();
+            magnetForce *= playerMagnetism;
+
+            if (magnetForce.magnitude > maxForce)
+                magnetForce = magnetForce.normalized * maxForce;
+
+            
             playerBody.AddForce(magnetForce);
 
         }
