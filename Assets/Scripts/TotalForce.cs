@@ -3,6 +3,7 @@ using System.Collections;
 
 public class TotalForce : MonoBehaviour {
     private Vector3 totalForce;
+	private Vector3 totalForceOld;
 	// Use this for initialization
 	void Start () {
 	
@@ -11,8 +12,12 @@ public class TotalForce : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () 
     {
-        totalForce = Vector3.zero;
+		if (totalForce.magnitude != 0) {
+			totalForceOld = totalForce;
+		}
+		totalForce = Vector3.zero;
 	}
+
 
     public void TallyForce(Vector3 force)
     {
@@ -21,6 +26,12 @@ public class TotalForce : MonoBehaviour {
 
     public Vector3 GetTotalForce()
     {
-        return totalForce;
+		if (totalForce.magnitude == 0) {
+			Debug.Log ("Left field");
+			return totalForceOld;
+		}
+		else {
+			return totalForce;
+		}
     }
 }
