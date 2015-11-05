@@ -19,8 +19,9 @@ public class TotalForce : MonoBehaviour {
 	}
 
 
-    public void TallyForce(Vector3 force)
-    {
+	public void TallyForce(Vector3 force, float strength)
+	{
+		if (strength > 0) force *= -1;
         totalForce += force;
     }
 

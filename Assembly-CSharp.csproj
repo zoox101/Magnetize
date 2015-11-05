@@ -47,13 +47,14 @@
   <ItemGroup>
      <Compile Include="Assets\PrimitivePlus\Scripts\PrimitivePlusEditor.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
-     <Compile Include="Assets\Scripts\Flip.cs" />
-     <Compile Include="Assets\Scripts\Force.cs" />
+     <Compile Include="Assets\Scripts\Magnet.cs" />
      <Compile Include="Assets\Scripts\MagnetForce.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Rotator.cs" />
      <Compile Include="Assets\Scripts\SphereMagnetForce.cs" />
      <Compile Include="Assets\Scripts\TotalForce.cs" />
+     <Compile Include="Assets\Scripts\Traps\Flip.cs" />
+     <Compile Include="Assets\Scripts\Traps\Force.cs" />
      <None Include="Assets\PrimitivePlus\Documentation\ReadMe.txt" />
  <Reference Include="UnityEngine.Networking">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>

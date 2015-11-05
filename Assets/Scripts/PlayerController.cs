@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour {
     public Text countText;
     public Text winText;
     public GameObject player;
-    public GameObject camera;
+   	public GameObject camera; //???
     public Material ballMaterial;
 
     [SerializeField] private RaycastHit whatIsGround;
