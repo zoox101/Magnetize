@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SphereMagnetForce : Magnet 
+public class Point : Magnet 
 {
 	override protected float getDistance()
 	{

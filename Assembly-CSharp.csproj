@@ -47,11 +47,12 @@
   <ItemGroup>
      <Compile Include="Assets\PrimitivePlus\Scripts\PrimitivePlusEditor.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
-     <Compile Include="Assets\Scripts\Magnet.cs" />
-     <Compile Include="Assets\Scripts\MagnetForce.cs" />
+     <Compile Include="Assets\Scripts\MagnetForces\Electron.cs" />
+     <Compile Include="Assets\Scripts\MagnetForces\Magnet.cs" />
+     <Compile Include="Assets\Scripts\MagnetForces\Point.cs" />
+     <Compile Include="Assets\Scripts\MagnetForces\Surface.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Rotator.cs" />
-     <Compile Include="Assets\Scripts\SphereMagnetForce.cs" />
      <Compile Include="Assets\Scripts\TotalForce.cs" />
      <Compile Include="Assets\Scripts\Traps\Flip.cs" />
      <Compile Include="Assets\Scripts\Traps\Force.cs" />

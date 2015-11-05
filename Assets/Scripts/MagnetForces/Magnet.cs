@@ -23,15 +23,18 @@ public abstract class Magnet : MonoBehaviour {
 	void OnTriggerStay(Collider other)
 	{
 		if (other.gameObject.CompareTag("Player"))
-		{
-			magnetForce = magnetStrength * getDirection () / (Mathf.Pow(getDistance (), magnetScaling));
-			player.GetComponent<TotalForce>().TallyForce(magnetForce, magnetStrength);
-			magnetForce *= controller.GetPlayerMagnetism();
-			if (magnetForce.magnitude > maxForce) magnetForce = magnetForce.normalized * maxForce;
-			body.AddForce(magnetForce);
-		}
+			applyForce();
 	}
 
+	virtual protected void applyForce()
+	{
+		magnetForce = magnetStrength * getDirection () / (Mathf.Pow(getDistance (), magnetScaling));
+		player.GetComponent<TotalForce>().TallyForce(magnetForce, magnetStrength);
+		magnetForce *= controller.GetPlayerMagnetism();
+		if (magnetForce.magnitude > maxForce) magnetForce = magnetForce.normalized * maxForce;
+		body.AddForce(magnetForce);
+	}
+	
 	protected abstract float getDistance () ;
 	protected abstract Vector3 getDirection();
 
