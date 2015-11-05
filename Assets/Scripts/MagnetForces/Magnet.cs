@@ -5,8 +5,8 @@ public abstract class Magnet : MonoBehaviour {
 
 	//Editable Values
 	public float magnetScaling = 2.0f;
-	public float magnetStrength = 1000f; //k
-	public float maxForce = 500f; //StrengthLimit
+	public float magnetStrength = 10f; //k 1000
+	public float maxForce = 10f; //StrengthLimit 500
 	public GameObject magnet;
 	public GameObject player;
 

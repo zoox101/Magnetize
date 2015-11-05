@@ -4,7 +4,7 @@ using System.Collections;
 public class Electron : Magnet 
 {
 	public static GameObject[] electrons = new GameObject[0];
-	private float electronStrength = 1f;
+	private float electronStrength = 0.1f;
 	private Rigidbody electronBody;
 
 	void OnTriggerStay(Collider other){}
