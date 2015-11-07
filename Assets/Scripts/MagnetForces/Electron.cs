@@ -25,20 +25,6 @@ public class Electron : Magnet
 		applyForce ();
 	}
 
-	/*
-	override protected float getDistance()
-	{
-		return Vector3.Distance (player.transform.position, magnet.transform.position);
-	}
-	
-	override protected Vector3 getDirection()
-	{
-		Vector3 direction = (player.transform.position - magnet.transform.position);
-		direction.Normalize ();
-		return direction;
-	}
-	*/
-
 	override protected float getDistance()
 	{
 		return Vector3.Distance(player.transform.position, magnet.GetComponent<Collider>().ClosestPointOnBounds(player.transform.position));

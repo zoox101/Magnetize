@@ -50,6 +50,7 @@
      <Compile Include="Assets\Scripts\MagnetForces\Electron.cs" />
      <Compile Include="Assets\Scripts\MagnetForces\Magnet.cs" />
      <Compile Include="Assets\Scripts\MagnetForces\Point.cs" />
+     <Compile Include="Assets\Scripts\MagnetForces\PointTest.cs" />
      <Compile Include="Assets\Scripts\MagnetForces\Surface.cs" />
      <Compile Include="Assets\Scripts\MenuStuffs\CloseOnclick.cs" />
      <Compile Include="Assets\Scripts\MenuStuffs\FollowUI.cs" />
