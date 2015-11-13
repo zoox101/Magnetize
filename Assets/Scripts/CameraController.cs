@@ -12,17 +12,21 @@ public class CameraController : MonoBehaviour
     private Vector3 offset;
     private float offsetMag;
     private Quaternion newLook;
+    private Quaternion oldLook;
     private Vector3 totalForceDirection;
     private Vector3 curryVelocity;
+    private PlayerController ballControls;
     
     void Start()
     {
         transform.LookAt(player.transform.position, Vector3.up);
         newLook.SetLookRotation(player.transform.position - transform.position, totalForceDirection);
+        ballControls = player.GetComponent<PlayerController>();
     }
 
     void Update()
     {
+        oldLook = newLook;
     }
 
     void LateUpdate()
@@ -36,13 +40,20 @@ public class CameraController : MonoBehaviour
         offset *= topCamera;
         offset *= -1;
 
-        transform.position = Vector3.SmoothDamp(transform.position, player.transform.position + offset, ref curryVelocity, .9f,100f,Time.deltaTime);
+        transform.position = Vector3.SmoothDamp(transform.position, player.transform.position + offset, ref curryVelocity, .9f,150f,Time.deltaTime*posDamping);
         totalForceDirection = player.GetComponent<TotalForce>().GetTotalForce();
         totalForceDirection *= -1;
         totalForceDirection.Normalize();
 
-        newLook.SetLookRotation(player.transform.position - transform.position, totalForceDirection);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, newLook, Time.deltaTime * 200);
+        if (!ballControls.GetGrounded())
+        {
+            newLook.SetLookRotation(player.transform.position - transform.position, totalForceDirection);
+        }
+        else
+        {
+            newLook.SetLookRotation(player.transform.position - transform.position, ballControls.GetContactNormal());
+        }
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, newLook, Time.deltaTime * Quaternion.Angle(transform.rotation,newLook)*5f);
     }
 }
     

@@ -13,11 +13,13 @@ public abstract class Magnet : MonoBehaviour {
 	protected Vector3 magnetForce;
 	protected Rigidbody body;
 	protected PlayerController controller;
+    protected TotalForce playerTotalForce;
 
 	void Start()
 	{
-		body = player.GetComponent<Rigidbody>();
+        body = player.GetComponent<Rigidbody>();
 		controller = player.GetComponent<PlayerController> ();
+        playerTotalForce = player.GetComponent<TotalForce>();
 	}
 
 	void OnTriggerStay(Collider other)
@@ -29,10 +31,13 @@ public abstract class Magnet : MonoBehaviour {
 	virtual protected void applyForce()
 	{
 		magnetForce = magnetStrength * getDirection () / (Mathf.Pow(getDistance (), magnetScaling));
-		player.GetComponent<TotalForce>().TallyForce(magnetForce, magnetStrength);
+		playerTotalForce.TallyForce(magnetForce, magnetStrength);
 		magnetForce *= controller.GetPlayerMagnetism();
-		if (magnetForce.magnitude > maxForce) magnetForce = magnetForce.normalized * maxForce;
-		body.AddForce(magnetForce);
+        if (magnetForce.magnitude > maxForce)
+        {
+            magnetForce = magnetForce.normalized * maxForce;
+        }
+        body.AddForce(magnetForce);
 	}
 	
 	protected abstract float getDistance () ;
