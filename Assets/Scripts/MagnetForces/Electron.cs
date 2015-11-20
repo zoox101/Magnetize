@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
+//Repels other electrons and attracts the player
 public class Electron : Magnet 
 {
 	public static GameObject[] electrons = new GameObject[0];
@@ -63,10 +64,6 @@ public class Electron : Magnet
 		magnetForce = magnetStrength * -1 * getDirection () / (Mathf.Pow (getDistance (), magnetScaling));
 		body.AddForce(magnetForce);
 	}
-
-
-
-
 
 
 }

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//Gets closest point on the bounding box
 public class Surface :  Magnet 
 {
 	override protected float getDistance()

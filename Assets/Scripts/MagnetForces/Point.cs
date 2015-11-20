@@ -17,19 +17,22 @@ public class Point : Magnet
 
     override protected void applyForce()
     {
+		//Getting the force of the magnet
         magnetForce = magnetStrength * getDirection() / (Mathf.Pow(getDistance(), magnetScaling));
-        //playerTotalForce.TallyForce(magnetForce, magnetStrength);
-        //magnetForce *= controller.GetPlayerMagnetism();
+
+		//Capping force
         if (magnetForce.magnitude > maxForce)
         {
             magnetForce = magnetForce.normalized * maxForce;
         }
+
+		//If grounded you're good
         if (controller.GetGrounded())
         {
             playerTotalForce.TallyForce(controller.GetContactNormal() * 50f, magnetStrength);
             body.AddForce(controller.GetPlayerMagnetism() * controller.GetContactNormal() * 50f);
-            //body.AddForce(magnetForce.normalized * 50f);
         }
+		//Else get do the calculation
         else
         {
             playerTotalForce.TallyForce(magnetForce, magnetStrength);

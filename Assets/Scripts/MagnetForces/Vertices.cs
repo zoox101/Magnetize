@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//Gets closest verticy from the object
 public class Vertices : Magnet 
 {
     protected Vector3[] verts;

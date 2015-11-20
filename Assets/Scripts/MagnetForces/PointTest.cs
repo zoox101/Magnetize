@@ -1,9 +1,10 @@
 using UnityEngine;
 using System.Collections;
 
+//Doesn't use collider
 public class PointTest : Magnet 
 {
-	void Update () 
+	void Update ()
 	{
 		applyForce ();
 	}

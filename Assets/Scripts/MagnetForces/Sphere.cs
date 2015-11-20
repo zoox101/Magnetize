@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//Gets the center point of the object
 public class Sphere : Magnet
 {
     override protected float getDistance()
@@ -13,17 +14,5 @@ public class Sphere : Magnet
         Vector3 direction = (player.transform.position - magnet.transform.position);
         direction.Normalize();
         return direction;
-    }
-
-    override protected void applyForce()
-    {
-        magnetForce = magnetStrength * getDirection() / (Mathf.Pow(getDistance(), magnetScaling));
-        playerTotalForce.TallyForce(magnetForce, magnetStrength);
-        magnetForce *= controller.GetPlayerMagnetism();
-        if (magnetForce.magnitude > maxForce)
-        {
-            magnetForce = magnetForce.normalized * maxForce;
-        }
-        body.AddForce(magnetForce);
     }
 }
