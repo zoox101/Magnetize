@@ -7,8 +7,9 @@ public abstract class Magnet : MonoBehaviour {
 	public float magnetScaling = 2.0f;
 	public float magnetStrength = 10f; //k 1000
 	public float maxForce = 10f; //StrengthLimit 500
-	public GameObject magnet;
-	public GameObject player;
+
+	protected GameObject player;
+	protected GameObject magnet;
 
 	protected Vector3 magnetForce;
 	protected Rigidbody body;
@@ -17,6 +18,8 @@ public abstract class Magnet : MonoBehaviour {
 
 	void Start()
 	{
+		player = GameObject.Find ("Player");
+		magnet = gameObject;
         body = player.GetComponent<Rigidbody>();
 		controller = player.GetComponent<PlayerController> ();
         playerTotalForce = player.GetComponent<TotalForce>();
