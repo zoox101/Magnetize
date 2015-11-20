@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour {
     private Transform groundCheck;
     private float groundedRadius = 5f;
     private Vector3 movement;
+    private Vector3 contactNormal;
+    private Vector3 lastContactNormal;
 
     void Start ()
     {
@@ -42,9 +44,6 @@ public class PlayerController : MonoBehaviour {
 			this.flip();
             Debug.Log("Flipped Magnetism");
         }
-    }
-    void FixedUpdate ()
-    {
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
@@ -62,6 +61,10 @@ public class PlayerController : MonoBehaviour {
         {
             rb.AddForce(movement * limitedSpeed);
         }
+    }
+    void FixedUpdate ()
+    {
+        
         if (playerMagnetism == 1)
         {
             ballMaterial.color = Color.red;
@@ -72,9 +75,14 @@ public class PlayerController : MonoBehaviour {
         }
 
     }
-    void OnCollisionStay()
+    void OnCollisionStay(Collision other)
     {
         isGrounded = true;
+        //print("Points colliding: " + other.contacts.Length);
+        //print("First normal of the points that collide: " + other.contacts[0].normal);
+        //lastContactNormal = contactNormal;
+        contactNormal = other.contacts[0].normal;
+        //contactNormal = player.transform.position - other.transform.position;
     }
     void OnCollisionExit()
     {
@@ -114,5 +122,13 @@ public class PlayerController : MonoBehaviour {
 	{
 		this.playerMagnetism *= -1;
 	}
+    public bool GetGrounded()
+    {
+        return isGrounded;
+    }
+    public Vector3 GetContactNormal()
+    {
+        return contactNormal;
+    }
     
 }
