@@ -25,13 +25,13 @@ public class Vertices : Magnet
         count = 0;
         while (count < 10)
         {
-            Debug.DrawRay(player.transform.position, transform.TransformPoint(magMesh.vertices[count]), Color.white, 5f);
+            Debug.DrawLine(player.transform.position, target.transform.TransformPoint(magMesh.vertices[count]), Color.white, 5f);
             count++;
         }
         count = 0;
-        while (count <verts.Length)
+        while (count < verts.Length)
         {
-            verts[count] = transform.TransformPoint(magMesh.vertices[count]);
+            verts[count] = target.transform.TransformPoint(magMesh.vertices[count]);
             count++;
         }
     }
@@ -85,5 +85,14 @@ public class Vertices : Magnet
 	override protected Vector3 getDirection()
     {
         return Vector3.zero;
+    }
+    void FixedUpdate()
+    {
+        count = 0;
+        while (count < 10)
+        {
+            Debug.DrawLine(player.transform.position, target.transform.TransformPoint(magMesh.vertices[count]), Color.white);
+            count++;
+        }
     }
 }

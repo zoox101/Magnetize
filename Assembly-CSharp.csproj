@@ -48,6 +48,7 @@
      <Compile Include="Assets\PrimitivePlus\Scripts\PrimitivePlusEditor.cs" />
      <Compile Include="Assets\Scripts\AddInvertedMeshCollider.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
+     <Compile Include="Assets\Scripts\CameraController2.cs" />
      <Compile Include="Assets\Scripts\InvertEditor.cs" />
      <Compile Include="Assets\Scripts\MagnetForces\Electron.cs" />
      <Compile Include="Assets\Scripts\MagnetForces\Magnet.cs" />
