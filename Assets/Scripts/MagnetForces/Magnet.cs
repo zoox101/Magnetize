@@ -5,8 +5,8 @@ public abstract class Magnet : MonoBehaviour {
 
 	//Editable Values
 	public float magnetScaling = 2.0f;
-	public float magnetStrength = 10f; //k 1000
-	public float maxForce = 10f; //StrengthLimit 500
+	public float magnetStrength = 500f; //k 1000
+	public float maxForce = 200f; //StrengthLimit 500
 
 	protected GameObject player;
 	protected GameObject magnet;
@@ -16,7 +16,7 @@ public abstract class Magnet : MonoBehaviour {
 	protected PlayerController controller;
     protected TotalForce playerTotalForce;
 
-	void Start()
+	protected void Start()
 	{
 		player = GameObject.Find ("Player");
 		magnet = gameObject;
@@ -25,7 +25,7 @@ public abstract class Magnet : MonoBehaviour {
         playerTotalForce = player.GetComponent<TotalForce>();
 	}
 
-	void OnTriggerStay(Collider other)
+	protected void OnTriggerStay(Collider other)
 	{
 		if (other.gameObject.CompareTag("Player"))
 			applyForce();
