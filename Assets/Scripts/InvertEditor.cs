@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿/*
+ * PUT IN FOLDER LABELED EDITOR
+ * 
+using UnityEngine;
 using UnityEditor;
 using System.Collections;
 
@@ -13,3 +16,4 @@ public class AddInvertedMeshColliderEditor : Editor
             script.CreateInvertedMeshCollider();
     }
 }
+*/

@@ -19,7 +19,6 @@ public class PlayerController : MonoBehaviour {
     private int playerMagnetism;
     private bool isGrounded;
     private Transform groundCheck;
-    private float groundedRadius = 5f;
     private Vector3 movement;
     private Vector3 contactNormal;
     private Vector3 lastContactNormal;
