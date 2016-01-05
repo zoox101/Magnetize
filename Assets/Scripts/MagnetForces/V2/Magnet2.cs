@@ -37,7 +37,7 @@ public abstract class Magnet2 : MonoBehaviour {
 		//Coulomb's Law
 		Vector3 magnetForce = effectiveStrength * getDirection () / (Mathf.Pow(getDistance (), magnetScaling));
 		//Factoring in the user's polarity
-		magnetForce *= controller.GetPlayerMagnetism();
+		magnetForce *= controller.GetPlayerMagnetism();;
 		return magnetForce;
 	}
 
@@ -52,6 +52,7 @@ public abstract class Magnet2 : MonoBehaviour {
 		body.AddForce(magnetForce);
 	}
 
+	//Returns the polarity of the current object
 	protected int getPolarity()
 	{
 		if (magnetStrength >= 0) return 1;
@@ -62,5 +63,4 @@ public abstract class Magnet2 : MonoBehaviour {
 	protected abstract float getDistance () ;
 	//Retuns the direction of each magnet from the player
 	protected abstract Vector3 getDirection();
-
 }

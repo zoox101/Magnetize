@@ -3,25 +3,26 @@ using System.Collections;
 
 public class CameraController : MonoBehaviour
 {
-
-    public GameObject player;
+	
     public float topCamera = 1.2f;
     public float backCamera = 1.35f;
     public float posDamping = 2f;
 
+	private GameObject player;
     private Vector3 offset;
     private float offsetMag;
     private Quaternion newLook;
     private Quaternion oldLook;
     private Vector3 totalForceDirection;
     private Vector3 curryVelocity;
-    private PlayerController ballControls;
+    private PlayerController controller;
     
     void Start()
     {
+		player = GameObject.Find ("Player");
         transform.LookAt(player.transform.position, Vector3.up);
         newLook.SetLookRotation(player.transform.position - transform.position, totalForceDirection);
-        ballControls = player.GetComponent<PlayerController>();
+		controller = player.GetComponent<PlayerController>();
     }
 
     void Update()
@@ -31,29 +32,41 @@ public class CameraController : MonoBehaviour
 
     void LateUpdate()
     {
-        offset = player.GetComponent<Rigidbody>().GetPointVelocity(player.transform.position);
+		Vector3 playerVelocity = player.GetComponent<Rigidbody> ().GetPointVelocity (player.transform.position);
+		Vector3 playerTotalForce = player.GetComponent<TotalForce> ().GetTotalForce ();
+		PlayerController controller = player.GetComponent<PlayerController> ();
+
+		//Getting the direction of the player's motion
+        offset = playerVelocity;
+		//Getting the magnitude of the motion
         offsetMag = offset.magnitude;
+		//Telling the camera to follow the player plus an offset coefficient
         offset = offset.normalized * (backCamera + offsetMag/10);
 
-        offset += player.GetComponent<TotalForce>().GetTotalForce().normalized;
-        offset *= (5 + (player.GetComponent<Rigidbody>().GetPointVelocity(player.transform.position).magnitude/10));
+		//Offsets the camera above the player
+		offset += playerTotalForce.normalized * controller.GetPlayerMagnetism ();
+		//No idea what this does
+		offset *= (5 + (playerVelocity.magnitude/10));
+		//Multiplies by a constant
         offset *= topCamera;
-        offset *= -1;
+		//Flips everything
+		offset *= -1;
 
         transform.position = Vector3.SmoothDamp(transform.position, player.transform.position + offset, ref curryVelocity, .9f,150f,Time.deltaTime*posDamping);
-        totalForceDirection = player.GetComponent<TotalForce>().GetTotalForce();
-        totalForceDirection *= -1;
+		totalForceDirection = playerTotalForce;
+        totalForceDirection *= 1;
         totalForceDirection.Normalize();
 
-        if (!ballControls.GetGrounded())
+		if (!controller.GetGrounded())
         {
             newLook.SetLookRotation(player.transform.position - transform.position, totalForceDirection);
         }
         else
         {
-            newLook.SetLookRotation(player.transform.position - transform.position, ballControls.GetContactNormal());
+			//If you're on the ground set camera behind the player with the ground below
+			newLook.SetLookRotation(player.transform.position - transform.position, controller.GetContactNormal());
         }
         transform.rotation = Quaternion.RotateTowards(transform.rotation, newLook, Time.deltaTime * Quaternion.Angle(transform.rotation,newLook)*5f);
     }
 }
-    
+

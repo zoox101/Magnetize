@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour {
     private Vector3 movement;
     private Vector3 contactNormal;
     private Vector3 lastContactNormal;
+	private GameObject contactObject;
 
     void Start ()
     {
@@ -72,6 +73,7 @@ public class PlayerController : MonoBehaviour {
         }
 
     }
+
     void OnCollisionStay(Collision other)
     {
         isGrounded = true;
@@ -80,7 +82,9 @@ public class PlayerController : MonoBehaviour {
         //lastContactNormal = contactNormal;
         contactNormal = other.contacts[0].normal;
         //contactNormal = player.transform.position - other.transform.position;
+		contactObject = other.gameObject;
     }
+
     void OnCollisionExit()
     {
         isGrounded = false;
@@ -96,7 +100,6 @@ public class PlayerController : MonoBehaviour {
 
         }
     }
-
 
     void UpdateCountText ()
     {
@@ -117,10 +120,9 @@ public class PlayerController : MonoBehaviour {
 
 	public void flip()
 	{
-		Debug.Log ("Before: " + playerMagnetism);
 		this.playerMagnetism *= -1;
-		Debug.Log ("After: " + playerMagnetism);
 	}
+
     public bool GetGrounded()
     {
         return isGrounded;
@@ -129,5 +131,9 @@ public class PlayerController : MonoBehaviour {
     {
         return contactNormal;
     }
+	public GameObject getContactObject()
+	{
+		return contactObject;
+	}
     
 }

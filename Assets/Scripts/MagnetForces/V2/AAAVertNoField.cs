@@ -20,9 +20,11 @@ public class AAAVertNoField : Magnet2
 
     protected override Vector3 calcForce()
     {
-
 		//If grounded, return a multiple of the normal to the surface
-		if (controller.GetGrounded ()) return controller.GetContactNormal () * controller.GetPlayerMagnetism () * getPolarity () * 50f;
+		if (controller.GetGrounded () && gameObject == controller.getContactObject()) 
+		{
+			return controller.GetContactNormal () * controller.GetPlayerMagnetism () * getPolarity () * 50f;
+		}
         else
         {
 			//Initilizing magnet force counter
