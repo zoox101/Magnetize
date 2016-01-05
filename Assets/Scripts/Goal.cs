@@ -14,6 +14,8 @@ public class Goal : MonoBehaviour
 			player.AddForce(force);
 			Debug.Log("Goal Hit");
 			this.gameObject.SetActive(false);
+			//Load the next level
+			Application.LoadLevel (Application.loadedLevel + 1);
 		}
 	}
 }

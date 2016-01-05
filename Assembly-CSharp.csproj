@@ -46,9 +46,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\PrimitivePlus\Scripts\PrimitivePlusEditor.cs" />
-     <Compile Include="Assets\Scripts\AddInvertedMeshCollider.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
-     <Compile Include="Assets\Scripts\CameraController2.cs" />
      <Compile Include="Assets\Scripts\Goal.cs" />
      <Compile Include="Assets\Scripts\InvertEditor.cs" />
      <Compile Include="Assets\Scripts\MagnetForces\Electron.cs" />
@@ -65,13 +63,16 @@
      <Compile Include="Assets\Scripts\MenuStuffs\Selectable.cs" />
      <Compile Include="Assets\Scripts\MenuStuffs\Sleector.cs" />
      <Compile Include="Assets\Scripts\MenuStuffs\StartGameLevel.cs" />
-     <Compile Include="Assets\Scripts\PlayerAttractor.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\PlayerControllerOld.cs" />
      <Compile Include="Assets\Scripts\Rotator.cs" />
      <Compile Include="Assets\Scripts\TitleScreenCamera.cs" />
      <Compile Include="Assets\Scripts\TotalForce.cs" />
      <Compile Include="Assets\Scripts\Traps\Flip.cs" />
      <Compile Include="Assets\Scripts\Traps\Force.cs" />
+     <Compile Include="Assets\Scripts\ZZZ Unused\AddInvertedMeshCollider.cs" />
+     <Compile Include="Assets\Scripts\ZZZ Unused\CameraController2.cs" />
+     <Compile Include="Assets\Scripts\ZZZ Unused\PlayerAttractor.cs" />
      <None Include="Assets\Skybox\ZZZ Source Files\MilkyWayV1\XMLFiles\MilkyWay3.xml" />
      <None Include="Assets\PrimitivePlus\Documentation\ReadMe.txt" />
      <None Include="Assets\Skybox\ZZZ Source Files\MilkyWayV1\XMLFiles\Old\MilkyWay1.xml" />
