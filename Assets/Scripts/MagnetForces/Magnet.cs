@@ -5,7 +5,7 @@ public abstract class Magnet : MonoBehaviour {
 
 	//Editable Values
 	public float magnetScaling = 2.0f;
-	public float magnetStrength = 500f; //k 1000
+	public float magnetStrength = 2000f; //k 1000
 	public float maxForce = 200f; //StrengthLimit 500
 
 	protected GameObject player;
@@ -36,10 +36,7 @@ public abstract class Magnet : MonoBehaviour {
 		magnetForce = magnetStrength * getDirection () / (Mathf.Pow(getDistance (), magnetScaling));
 		playerTotalForce.TallyForce(magnetForce, magnetStrength);
 		magnetForce *= controller.GetPlayerMagnetism();
-        if (magnetForce.magnitude > maxForce)
-        {
-            magnetForce = magnetForce.normalized * maxForce;
-        }
+        if (magnetForce.magnitude > maxForce) magnetForce = magnetForce.normalized * maxForce;
         body.AddForce(magnetForce);
 	}
 	

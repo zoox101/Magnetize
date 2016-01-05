@@ -5,9 +5,9 @@ public class CameraController : MonoBehaviour
 {
 
     public GameObject player;
-    public float topCamera;
-    public float backCamera;
-    public float posDamping;
+    public float topCamera = 1.2f;
+    public float backCamera = 1.35f;
+    public float posDamping = 2f;
 
     private Vector3 offset;
     private float offsetMag;

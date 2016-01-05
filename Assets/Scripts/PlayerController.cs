@@ -27,15 +27,13 @@ public class PlayerController : MonoBehaviour {
     {
         rb = GetComponent<Rigidbody>();
         count = 0;
-        UpdateCountText();
-        winText.text = "";
         playerMagnetism = -1;
         limitedSpeed = speed / 10;
 
         isGrounded = true;
-        groundCheck = transform.Find("GroundCheck");
-
+		groundCheck = transform.Find("GroundCheck");
     }
+
     void Update()
     {
         if (Input.GetButtonDown("Jump"))
@@ -119,7 +117,9 @@ public class PlayerController : MonoBehaviour {
 
 	public void flip()
 	{
+		Debug.Log ("Before: " + playerMagnetism);
 		this.playerMagnetism *= -1;
+		Debug.Log ("After: " + playerMagnetism);
 	}
     public bool GetGrounded()
     {
