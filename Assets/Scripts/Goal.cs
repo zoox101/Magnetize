@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//Allows the player to go to the next level
 public class Goal : MonoBehaviour 
 {
-	public int kick = 2000;
+	public int kick = 20000;
 
 	void OnTriggerStay(Collider other)
 	{
